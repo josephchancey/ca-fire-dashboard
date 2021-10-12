@@ -4,6 +4,8 @@ from flask_pymongo import PyMongo
 from bson import json_util, ObjectId
 from bson.json_util import dumps
 import json
+
+from pymongo.common import partition_node
 import scrape
 
 app = Flask(__name__)
@@ -17,8 +19,7 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/calfire")
 @app.route('/home')
 def home():
 
-    fires = mongo.db.fires.find_one()
-    return render_template('index.html', data=fires)
+    return render_template('index.html')
 
 # Scrape Route
 @app.route('/scrape')
@@ -38,22 +39,28 @@ def about():
 
 
 ### DATABASE ROUTES ### 
-@app.route('/<attb>/data')
+# @app.route('/<attb>/data')
+# def db_data(attb):
+
+#     db_data = mongo.db.fires.find({'IsActive':attb}, {'_id': False})
+#     print('this route was pinged')
+#     parsed = [x for x in db_data]
+#     print('parsed: ', parsed)
+#     return jsonify(parsed)
+
+@app.route('/<attb>/active')
 def db_data(attb):
 
-    db_data = mongo.db.fires.find({'IsActive':attb}, {'_id': False})
+    db_data = list(mongo.db.fires.find({'IsActive': bool(attb)},{'_id': False}))
     print('this route was pinged')
+    print('db_data is below this line')
+    print(db_data)
     parsed = [x for x in db_data]
     print('parsed: ', parsed)
+    print(type(parsed))
     return jsonify(parsed)
 
-@app.route('/database')
-def database():
-    db_data = mongo.db.fires.find()
-    print('this route was pinged')
-    parsed = [x for x in db_data]
-    print('parsed: ', parsed)
-    return jsonify(parsed)
+
 
 # Debugger
 if __name__ == '__main__':

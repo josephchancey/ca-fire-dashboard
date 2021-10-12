@@ -28,11 +28,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="{{url_for('home')}}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="{{ url_for('about') }}">About</a>
               </li>
           </ul>
           <span class="navbar-text text-muted">
@@ -43,7 +43,7 @@
       </header>
 
       <!-- Flash Error/Feedback Messages -->
-      <main role="main" class="container">
+      <main role="main" class="container-lg map-dash">
         <div class="row">
           <div class="col-md-8">
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -56,7 +56,7 @@
               {% endif %}
             {% endwith %}
             <!-- LOAD MAIN CONTENT FOR THE PAGE | THIS IS A TEMPLATE - OTHER .html FILES WILL LOAD UNIQUE  -->
-            {% block content %}{% endblock %}
+            {% block content %} {% endblock %}
           </div>
           <div class="col-md-4">
             <div class="content-section">

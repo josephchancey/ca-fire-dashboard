@@ -11,3 +11,8 @@ body {
     border-radius: 3px;
     margin-bottom: 20px;
   }
+
+  .map-dash {
+    margin-left: 75px;
+    margin-right: 75px;
+  }

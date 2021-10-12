@@ -6,7 +6,7 @@ import json
 app = Flask(__name__)
 
 # Use PyMongo to establish Mongo connection
-app.config["MONGO_URI"] = "mongodb://localhost:27017/calfire_dashboard"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/calfire"
 mongo = PyMongo(app)
 
 # Call routes last because routes depends on db declaired above

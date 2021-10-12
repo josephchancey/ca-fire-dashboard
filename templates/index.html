@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- Import data ??? -->
+<!-- <div>{{ data }}</div> -->
+
+<div>
+  <h1 class="mr-2">Welcome, this is a test header.</h1>
+</div>
+
+<!-- cost dropdown -->
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+  <label class="form-check-label" for="flexCheckChecked">
+    Active Fires
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Inactive Fires
+  </label>
+</div>
+
+<!-- HEATMAP PLOT HERE -->
+<div id="Heatmap"></div>
+
+
+<!-- scripts -->
+<script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.1.1/d3.min.js"></script>
+
+<!-- js syntax for Flask -->
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+<!-- KEEP ALL CODE ABOVE THIS LINE -->
+{% endblock content %}

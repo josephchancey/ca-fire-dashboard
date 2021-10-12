@@ -1,4 +1,4 @@
-# Grab our packaged app
+# Grab our app package
 from app import app
 
 # Debugger

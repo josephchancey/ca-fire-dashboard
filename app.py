@@ -37,29 +37,40 @@ def stats():
 def about():
     return render_template('about.html')
 
-
-### DATABASE ROUTES ### 
-# @app.route('/<attb>/data')
+# @app.route('/<attb>/active')
 # def db_data(attb):
 
-#     db_data = mongo.db.fires.find({'IsActive':attb}, {'_id': False})
-#     print('this route was pinged')
+#     if str(attb) == "true" or "True" or 1:
+#         db_data = list(mongo.db.fires.find({'IsActive': True}, {'_id': False}))
+#         print('this route True value was pinged')
+
+#     elif str(attb) == "false" or "False" or 0:
+#         db_data = list(mongo.db.fires.find({'IsActive': False}, {'_id': False}))
+#         print('this route False value was pinged')
+
+#     else:
+#         print("Not a Valid URL")
+#         return
+    
 #     parsed = [x for x in db_data]
-#     print('parsed: ', parsed)
+    
+#     # print('parsed: ', parsed)
+#     # print(type(parsed))
 #     return jsonify(parsed)
 
-@app.route('/<attb>/active')
-def db_data(attb):
+@app.route('/active/fires')
+def activeFires():
 
-    db_data = list(mongo.db.fires.find({'IsActive': bool(attb)},{'_id': False}))
-    print('this route was pinged')
-    print('db_data is below this line')
-    print(db_data)
+    db_data = list(mongo.db.fires.find({'IsActive': True}, {'_id': False}))
     parsed = [x for x in db_data]
-    print('parsed: ', parsed)
-    print(type(parsed))
     return jsonify(parsed)
+    
+@app.route('/inactive/fires')
+def inactiveFires():
 
+    db_data = list(mongo.db.fires.find({'IsActive': False}, {'_id': False}))
+    parsed = [x for x in db_data]
+    return jsonify(parsed)
 
 
 # Debugger

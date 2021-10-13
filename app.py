@@ -1,12 +1,10 @@
 # Grab our app package
 from flask import Flask, render_template, url_for, redirect, jsonify
 from flask_pymongo import PyMongo
-from bson import json_util, ObjectId
-from bson.json_util import dumps
 import json
-
+import pymongo
 from pymongo.common import partition_node
-import scrape
+from scrape import scrapeData
 
 app = Flask(__name__)
 
@@ -18,25 +16,32 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/calfire")
 @app.route('/')
 @app.route('/home')
 def home():
-
+    # data = mongo.db.fires.find_one()
     return render_template('index.html')
 
 # Scrape Route
-@app.route('/scrape')
+@app.route('/scrape', methods=['GET', 'POST'])
 def scrape():
-    # Call Scrape Method - Do Scrape Stuff Here
+
+    scraped_data = scrapeData()
+    for i in scraped_data:
+        mongo.db.fires.replace_one({'_id': i['_id']}, i, upsert=True)
+
     return redirect("/")
 
 # Statistics Page
 @app.route('/stats')
 def stats():
+
     return render_template('stats.html')
 
 # About Page
 @app.route('/about')
 def about():
+    
     return render_template('about.html')
 
+# This route is not working, commenting out to investigate. The two routes below are an alternative implementation.
 # @app.route('/<attb>/active')
 # def db_data(attb):
 

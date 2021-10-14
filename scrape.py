@@ -99,12 +99,12 @@ def scrapeData():
     for item in scraped_data:
         collection.insert_one(item)
 
-    # Converting to the JSON
-    json_data = dumps(scraped_data, indent = 4) 
+    # # Converting to the JSON
+    # json_data = dumps(scraped_data, indent = 4) 
 
-    # Writing data to file data.json - Easy for JavaScript Access
-    with open('data/fires.json', 'w') as file:
-        file.write(json_data)
+    # # Writing data to file data.json - Easy for JavaScript Access
+    # with open('data/fires.json', 'w') as file:
+    #     file.write(json_data)
     
     print("Scrape Done!")
     return scraped_data

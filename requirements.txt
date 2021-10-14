@@ -1,0 +1,8 @@
+# requirements for running code
+Flask
+Flask-PyMongo
+pymongo
+itertools
+bson
+urllib
+json

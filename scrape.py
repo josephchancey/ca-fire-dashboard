@@ -84,7 +84,8 @@ def scrapeData():
         active_2013 = json.loads(url.read().decode())
 
     scraped_data = list(itertools.chain(active_2021,inactive_2021, active_2020, inactive_2020, active_2019,inactive_2019, 
-    active_2018, inactive_2018, active_2018, inactive_2017,active_2016, inactive_2016, active_2015, inactive_2015, active_2014, inactive_2014, active_2013, inactive_2013))
+    active_2018, inactive_2018, active_2018, inactive_2017,active_2016, inactive_2016,
+    active_2015, inactive_2015, active_2014, inactive_2014, active_2013, inactive_2013))
 
     # Initialize PyMongo to work with MongoDBs
     conn = 'mongodb://localhost:27017'

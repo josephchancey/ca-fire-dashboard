@@ -25,12 +25,11 @@
 <!-- HEATMAP PLOT HERE -->
 <div id="Heatmap"></div>
 
-<!-- scripts -->
-<script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.1.1/d3.min.js"></script>
-
-<!-- js syntax for Flask -->
-<script src="{{ url_for('static', filename='app.js') }}"></script>
 
 <!-- KEEP ALL CODE ABOVE THIS LINE -->
 {% endblock content %}
+
+{% block script %} 
+<!-- js syntax for Flask -->
+<script src="{{ url_for('static', filename='heatmap.js') }}"></script>
+{% endblock %}

@@ -16,7 +16,7 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/calfire")
 @app.route('/')
 @app.route('/home')
 def home():
-    
+
     return render_template('index.html')
 
 # Scrape Route for scrape.py function
@@ -26,7 +26,6 @@ def scrape():
     scraped_data = scrapeData()
     for i in scraped_data:
         mongo.db.fires.replace_one({'_id': i['_id']}, i, upsert=True)
-        
 
     return redirect("/")
 

@@ -1,4 +1,4 @@
-# Grab our app package
+# Import dependencies
 from flask import Flask, render_template, url_for, redirect, jsonify
 from flask_pymongo import PyMongo
 import json
@@ -16,16 +16,17 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/calfire")
 @app.route('/')
 @app.route('/home')
 def home():
-    # data = mongo.db.fires.find_one()
+    
     return render_template('index.html')
 
-# Scrape Route
+# Scrape Route for scrape.py function
 @app.route('/scrape', methods=['GET', 'POST'])
 def scrape():
 
     scraped_data = scrapeData()
     for i in scraped_data:
         mongo.db.fires.replace_one({'_id': i['_id']}, i, upsert=True)
+        
 
     return redirect("/")
 

@@ -93,6 +93,7 @@ def scrapeData():
 
     # Define database and collection
     db = client.calfire
+
     collection = db.fires
 
     # Loop through list and add each dictionary item to MongoDB

@@ -7,8 +7,12 @@
   <h1 class="mr-2">Stats</h1>
   
   <!-- Map Here? -->
-  <div>
-      <p>Map goes here</p>
+  <div class="box">
+      <div id="test_stat"></div>
+      <br>
+      <div id="test_stat_two"></div>
+      <br>
+      <div id="test_stat_three"></div>
   </div>
 </div>
 
@@ -16,3 +20,8 @@
 
 <!-- KEEP ALL CODE ABOVE THIS LINE -->
 {% endblock content %}
+
+{% block script %} 
+<!-- js syntax for Flask -->
+<script src="{{ url_for('static', filename='stats.js') }}"></script>
+{% endblock %}

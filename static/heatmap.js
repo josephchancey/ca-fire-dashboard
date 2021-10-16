@@ -15,11 +15,6 @@ d3.json(`/inactive/fires`).then(function(fires){
     
     console.log(fires);
 
-    // 1 acre = 43,560 square feet
-    // 1 foot = 0.3048 meter 
-    // radius = sqrt(area/pi)
-    // var fireRadius = Math.sqrt(fires.AcresBurned/Math.PI)
-
     var heatArray = [];
 
     for (var i = 0; i < fires.length; i++) {
@@ -27,12 +22,11 @@ d3.json(`/inactive/fires`).then(function(fires){
 
         if (location) {
             heatArray.push(location);
-
         }
     }
 
     var heat = L.heatLayer(heatArray, {
-        radius: fires.map(fire => fire.AcresBurned),
+        radius: 25,
         blur: 35
     }).addTo(heatmap);
 

@@ -2,17 +2,25 @@
 {% block content %}
 <!-- PUT MAP UNDER HERE -->
 
-<!-- Put the map in a div here -->
-<div>
-  <h1 class="mr-2">Stats</h1>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Statistics</h1>
+
+</div>
   
   <!-- Map Here? -->
-  <div>
-      <p>Map goes here</p>
+  <div class="box">
+      <div id="test_stat"></div>
+      <br>
+      <div id="test_stat_two"></div>
+      <br>
+      <div id="test_stat_three"></div>
   </div>
-</div>
-
 <!-- Call JavaScript here-->
 
 <!-- KEEP ALL CODE ABOVE THIS LINE -->
 {% endblock content %}
+
+{% block script %} 
+<!-- js syntax for Flask -->
+<script src="{{ url_for('static', filename='stats.js') }}"></script>
+{% endblock %}

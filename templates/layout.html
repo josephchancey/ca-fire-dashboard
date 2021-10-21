@@ -18,17 +18,18 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
-        <link rel="icon" href="https://www.pinclipart.com/picdir/middle/169-1698872_dove-clipart-flame-transparent-background-fire-icon-png.png">
+    <link rel="icon"
+        href="https://cdn-icons-png.flaticon.com/512/785/785116.png">
 
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin=""/>
-    
-        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
         crossorigin=""></script>
 
-        
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -45,11 +46,11 @@
         }
     </style>
 
-{% if title %}
-<title>Calfire Dashboard - {{ title }}</title>
-{% else %}
-<title>Calfire Dashboard</title>
-{% endif %}
+    {% if title %}
+    <title>Calfire Dashboard - {{ title }}</title>
+    {% else %}
+    <title>Calfire Dashboard</title>
+    {% endif %}
 
 
 </head>
@@ -72,6 +73,11 @@
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
+
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 text-muted">
+                        <span>Dashboard</span>
+                    </h6>
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{url_for('home')}}">
@@ -81,13 +87,13 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('stats')}}">
-                                <span data-feather="file"></span>
+                                <span data-feather="pie-chart"></span>
                                 Statistics
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('about') }}">
-                                <span data-feather="shopping-cart"></span>
+                                <span data-feather="user"></span>
                                 About
                             </a>
                         </li>
@@ -96,9 +102,6 @@
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         <span>Database</span>
-                        <a class="link-secondary" href="#" aria-label="Add a new report">
-                            <span data-feather="plus-circle"></span>
-                        </a>
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
@@ -113,13 +116,11 @@
                                 Active Fires JSON
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                <a href="{{ url_for('scrape') }}" type="button" class="btn btn-dark">Update Database</a>
-                            </a>
+                        <li class="nav-item nav-link">
+                            <a href="{{ url_for('scrape') }}" type="button" class="btn btn-dark">Update Database</a>
                         </li>
                     </ul>
+                    <p class="text-muted fixed-bottom nav-item nav-link">Data from <a href="https://www.fire.ca.gov/incidents/" class="text-muted">CalFire API.</a></p>
                 </div>
             </nav>
 
@@ -127,8 +128,8 @@
 
                 <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
-                            <!-- LOAD MAIN CONTENT FOR THE PAGE | THIS IS A TEMPLATE - OTHER .html FILES WILL LOAD UNIQUE  -->
-            {% block content %} {% endblock %}
+                <!-- LOAD MAIN CONTENT FOR THE PAGE | THIS IS A TEMPLATE - OTHER .html FILES WILL LOAD UNIQUE  -->
+                {% block content %} {% endblock %}
 
             </main>
         </div>
@@ -143,19 +144,38 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
         integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
         crossorigin="anonymous"></script>
-    <script src="dashboard.js"></script>
-    
+    <script src="../static/dashboard.js"></script>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <!-- Leaflet heatmap plugin-->
+    <script type="text/javascript" src="static/leaflet-heat.js"></script>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
     <!-- scripts -->
     <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.1.1/d3.min.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    {% block script %} 
-    
+    {% block script %}
+
     {% endblock %}
 
 </body>

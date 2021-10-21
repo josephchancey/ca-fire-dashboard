@@ -4,6 +4,7 @@ from bson.json_util import dumps, loads
 import os, ssl
 import pymongo
 import itertools
+import pandas as pd
 
 def scrapeData():
 
@@ -87,6 +88,41 @@ def scrapeData():
     active_2018, inactive_2018, active_2018, inactive_2017,active_2016, inactive_2016,
     active_2015, inactive_2015, active_2014, inactive_2014, active_2013, inactive_2013))
 
+    # convert to DataFrame to add duration and years columns
+    fireData = pd.DataFrame(scraped_data)
+
+    # create a column that contains the duration of each fire
+    # first convert the date columns to datetime
+    fireData["ExtinguishedDateOnly"] = pd.to_datetime(fireData["ExtinguishedDateOnly"])
+    fireData["StartedDateOnly"] = pd.to_datetime(fireData["StartedDateOnly"])
+
+    # subtract the two dates
+    fireData["Duration(Days)"] = fireData["ExtinguishedDateOnly"] - fireData["StartedDateOnly"]
+
+    # convert duration to string and remove "days"
+    fireData["Duration(Days)"] = fireData["Duration(Days)"].astype(str)
+    fireData["Duration(Days)"] = fireData["Duration(Days)"].str.replace("days","")
+
+    # convert NaT to NaN and convert back to float
+    fireData["Duration(Days)"] = fireData["Duration(Days)"].replace(["NaT"],"NaN")
+    fireData["Duration(Days)"] = fireData["Duration(Days)"].astype(float)
+
+    # add 1 day so fires that start and end on the same day do not have a duration of 0
+    fireData["Duration(Days)"] = fireData["Duration(Days)"] + 1
+
+    # create a column that holds the year of each start date
+    fireData["Year"] = fireData["StartedDateOnly"].dt.year
+
+    # drop the extraneous columns
+    fireData = fireData.drop("ExtinguishedDateOnly",1)
+    fireData = fireData.drop("StartedDateOnly",1)
+
+    # drop the NaNs
+    fireData = fireData.fillna(0)
+
+    # convert the data back to JSON
+    final_data = fireData.to_dict(orient='records')
+    
     # Initialize PyMongo to work with MongoDBs
     conn = 'mongodb://localhost:27017'
     client = pymongo.MongoClient(conn)
@@ -94,10 +130,16 @@ def scrapeData():
     # Define database and collection
     db = client.calfire
 
+    try:
+        db.fires.drop()
+        print("Dropped Fires")
+    except:
+        print("Database not dropped")
+
     collection = db.fires
 
     # Loop through list and add each dictionary item to MongoDB
-    for item in scraped_data:
+    for item in final_data:
         collection.insert_one(item)
 
     # # Converting to the JSON
@@ -108,4 +150,4 @@ def scrapeData():
     #     file.write(json_data)
     
     print("Scrape Done!")
-    return scraped_data
+    return final_data

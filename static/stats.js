@@ -34,9 +34,10 @@ d3.json(`/active/fires`).then(function (myData) {
     console.log("Init now")
     let data = [
         {
-            x: myData.map(x => x.Name),
-            y: myData.map(x => x.StartedDateOnly),
-            mode: 'markers'
+            x: myData.map(x => x["Name"]),
+            y: myData.map(x => x["Started"]),
+            mode: 'markers',
+            type: 'scatter'
         }
     ]
     console.log("let data = is now logged")
@@ -50,8 +51,8 @@ d3.json(`/active/fires`).then(function (myData) {
 d3.json(`/active/fires`).then(function (myData) {
     console.log("We're in the active fires plot")
     // map values
-    let newX = myData.map(x => x.Name);
-    let newY = myData.map(x => x.StartedDateOnly);
+    let newX = myData.map(x => x["Name"]);
+    let newY = myData.map(x => x["Started"]);
 
     // restyle existing type plot
     Plotly.restyle('test_stat', 'x', [newX]);
@@ -102,7 +103,8 @@ d3.json(`/inactive/fires`).then(function (myData) {
         {
             x: myData.map(x => x.Name),
             y: myData.map(x => x.AcresBurned),
-            mode: 'markers'
+            mode: 'markers',
+            type: 'scatter'
         }
     ]
     console.log("let data = is now logged")

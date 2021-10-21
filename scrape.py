@@ -117,6 +117,9 @@ def scrapeData():
     fireData = fireData.drop("ExtinguishedDateOnly",1)
     fireData = fireData.drop("StartedDateOnly",1)
 
+    # drop the NaNs
+    fireData = fireData.fillna(0)
+
     # convert the data back to JSON
     final_data = fireData.to_dict(orient='records')
     

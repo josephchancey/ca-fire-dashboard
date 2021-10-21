@@ -13,6 +13,8 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/calfire")
 
 ### ROUTES ###
 # Home Page Route
+
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -20,6 +22,8 @@ def home():
     return render_template('index.html')
 
 # Scrape Route for scrape.py function
+
+
 @app.route('/scrape', methods=['GET', 'POST'])
 def scrape():
 
@@ -30,18 +34,24 @@ def scrape():
     return redirect("/")
 
 # Statistics Page
+
+
 @app.route('/stats')
 def stats():
 
     return render_template('stats.html')
 
 # About Page
+
+
 @app.route('/about')
 def about():
-    
+
     return render_template('about.html')
 
 # Active Fires
+
+
 @app.route('/active/fires')
 def activeFires():
 
@@ -50,6 +60,8 @@ def activeFires():
     return jsonify(parsed)
 
 # Inactive Fires
+
+
 @app.route('/inactive/fires')
 def inactiveFires():
 
@@ -58,6 +70,8 @@ def inactiveFires():
     return jsonify(parsed)
 
 # Wildfire Fires
+
+
 @app.route('/wildfire/fires')
 def wildfireType():
 

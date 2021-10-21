@@ -13,19 +13,19 @@ baseLayer.addTo(firemap);
 // ['#ffffb2','#fecc5c','#fd8d3c','#f03b20','#bd0026']
 function getColor(duration) {
     if (parseInt(duration) > 100) {
-        return "#bd0026";
+        return "#CE2029";
     }
     else if (parseInt(duration) > 75) {
-        return "#f03b20";
+        return "#D84528";
     }
     else if (parseInt(duration) > 50) {
-        return "#fd8d3c";
+        return "#E26928";
     }
     else if (parseInt(duration) > 25) {
-        return "#fecc5c";
+        return "#EB8E27";
     }
     else {
-        return "#ffffb2";
+        return "#F5B227";
     }
 }
 

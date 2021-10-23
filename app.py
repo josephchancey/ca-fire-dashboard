@@ -71,6 +71,12 @@ def inactiveFires():
 
 # Wildfire Fires
 
+@app.route('/ca_burned')
+def ca_burned():
+
+    db_data = list(mongo.db.ca_burned.find({}, {'_id': False}))
+    burned = [x for x in db_data]
+    return jsonify(burned)
 
 @app.route('/wildfire/fires')
 def wildfireType():

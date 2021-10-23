@@ -1,14 +1,5 @@
-<<<<<<< HEAD
-
-=======
 # Import dependencies
-import urllib.request, json 
-from bson.json_util import dumps, loads
-import os, ssl
-import pymongo
-import itertools
-import pandas as pd
->>>>>>> acdd1f190ea7db5609bc43a42718ca4e838484ca
+
 
 def scrapeData():
     import urllib.request, json 
@@ -222,69 +213,22 @@ def scrapeData():
     # In[23]:
 
 
-    # convert to DataFrame to add duration and years columns
-    fireData = pd.DataFrame(scraped_data)
-
-    # create a column that contains the duration of each fire
-    # first convert the date columns to datetime
-    fireData["ExtinguishedDateOnly"] = pd.to_datetime(fireData["ExtinguishedDateOnly"])
-    fireData["StartedDateOnly"] = pd.to_datetime(fireData["StartedDateOnly"])
-
-    # subtract the two dates
-    fireData["Duration(Days)"] = fireData["ExtinguishedDateOnly"] - fireData["StartedDateOnly"]
-
-    # convert duration to string and remove "days"
-    fireData["Duration(Days)"] = fireData["Duration(Days)"].astype(str)
-    fireData["Duration(Days)"] = fireData["Duration(Days)"].str.replace("days","")
-
-    # convert NaT to NaN and convert back to float
-    fireData["Duration(Days)"] = fireData["Duration(Days)"].replace(["NaT"],"NaN")
-    fireData["Duration(Days)"] = fireData["Duration(Days)"].astype(float)
-
-    # add 1 day so fires that start and end on the same day do not have a duration of 0
-    fireData["Duration(Days)"] = fireData["Duration(Days)"] + 1
-
-    # create a column that holds the year of each start date
-    fireData["Year"] = fireData["StartedDateOnly"].dt.year
-
-    # drop the extraneous columns
-    fireData = fireData.drop("ExtinguishedDateOnly",1)
-    fireData = fireData.drop("StartedDateOnly",1)
-
-    # drop the NaNs
-    fireData = fireData.fillna(0)
-
-    # convert the data back to JSON
-    final_data = fireData.to_dict(orient='records')
-    
     # Initialize PyMongo to work with MongoDBs
     conn = 'mongodb://localhost:27017'
     client = pymongo.MongoClient(conn)
 
     # Define database and collection
     db = client.calfire
-
-    try:
-        db.fires.drop()
-        print("Dropped Fires")
-    except:
-        print("Database not dropped")
-
     collection = db.fires
 
-<<<<<<< HEAD
 
     # In[24]:
 
 
-=======
-    # Loop through list and add each dictionary item to MongoDB
->>>>>>> acdd1f190ea7db5609bc43a42718ca4e838484ca
     for item in final_data:
         collection.insert_one(item)
 
 
-<<<<<<< HEAD
     # In[25]:
 
 
@@ -568,11 +512,3 @@ def scrapeData():
     converted_burned = pd.DataFrame.to_dict(burned_by_year_df, orient="records")
     converted_burned
     db.ca_burned.insert_many(converted_burned )
-=======
-    # # Writing data to file data.json - Easy for JavaScript Access
-    # with open('data/fires.json', 'w') as file:
-    #     file.write(json_data)
-    
-    print("Scrape Done!")
-    return final_data
->>>>>>> acdd1f190ea7db5609bc43a42718ca4e838484ca

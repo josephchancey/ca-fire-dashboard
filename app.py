@@ -28,8 +28,13 @@ def home():
 def scrape():
 
     scraped_data = scrapeData()
+    print(scraped_data)
     for i in scraped_data:
-        mongo.db.fires.replace_one({'_id': i['_id']}, i, upsert=True)
+        try:
+            mongo.db.fires.replace_one({'_id': i['_id']}, i, upsert=True)
+        except TypeError:
+            continue
+
 
     return redirect("/")
 

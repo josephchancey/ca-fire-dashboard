@@ -12,9 +12,6 @@ def scrapeData():
 
     # ### 2021
 
-    # In[2]:
-
-
     if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
     getattr(ssl, '_create_unverified_context', None)):
         ssl._create_default_https_context = ssl._create_unverified_context
@@ -23,27 +20,17 @@ def scrapeData():
         inactive_2021 = json.loads(url.read().decode())
         # print(json.dumps(data, indent=4, sort_keys=False))
 
-
-    # In[3]:
-
-
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false&year=2021") as url:
         active_2021 = json.loads(url.read().decode())
+
         # print(json.dumps(data, indent=4, sort_keys=False))
 
 
     # ## 2020
 
-    # In[4]:
-
-
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=true&year=2020") as url:
         inactive_2020 = json.loads(url.read().decode())
         # print(json.dumps(data, indent=4, sort_keys=False))
-
-
-    # In[5]:
-
 
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false&year=2020") as url:
         active_2020 = json.loads(url.read().decode())
@@ -52,16 +39,9 @@ def scrapeData():
 
     # ## 2019
 
-    # In[6]:
-
-
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=true&year=2019") as url:
         inactive_2019 = json.loads(url.read().decode())
         # print(json.dumps(data, indent=4, sort_keys=False))
-
-
-    # In[7]:
-
 
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false&year=2019") as url:
         active_2019 = json.loads(url.read().decode())
@@ -69,16 +49,9 @@ def scrapeData():
 
     # ## 2018
 
-    # In[8]:
-
-
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=true&year=2018") as url:
         inactive_2018 = json.loads(url.read().decode())
         # print(json.dumps(data, indent=4, sort_keys=False))
-
-
-    # In[9]:
-
 
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false&year=2018") as url:
         active_2018 = json.loads(url.read().decode())
@@ -87,16 +60,9 @@ def scrapeData():
 
     # ## 2017
 
-    # In[10]:
-
-
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=true&year=2017") as url:
         inactive_2017 = json.loads(url.read().decode())
         # print(json.dumps(data, indent=4, sort_keys=False))
-
-
-    # In[11]:
-
 
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false&year=2017") as url:
         active_2017 = json.loads(url.read().decode())
@@ -105,16 +71,9 @@ def scrapeData():
 
     # ## 2016
 
-    # In[12]:
-
-
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=true&year=2016") as url:
         inactive_2016 = json.loads(url.read().decode())
         # print(json.dumps(data, indent=4, sort_keys=False))
-
-
-    # In[13]:
-
 
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false&year=2016") as url:
         active_2016 = json.loads(url.read().decode())
@@ -123,34 +82,19 @@ def scrapeData():
 
     # ## 2015
 
-    # In[14]:
-
-
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=true&year=2015") as url:
         inactive_2015 = json.loads(url.read().decode())
         # print(json.dumps(data, indent=4, sort_keys=False))
-
-
-    # In[15]:
-
 
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false&year=2015") as url:
         active_2015 = json.loads(url.read().decode())
         # print(json.dumps(data, indent=4, sort_keys=False))
 
-
     # ## 2014
-
-    # In[16]:
-
 
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=true&year=2014") as url:
         inactive_2014 = json.loads(url.read().decode())
         # print(json.dumps(data, indent=4, sort_keys=False))
-
-
-    # In[17]:
-
 
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false&year=2014") as url:
         active_2014 = json.loads(url.read().decode())
@@ -159,16 +103,9 @@ def scrapeData():
 
     # ## 2013
 
-    # In[18]:
-
-
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=true&year=2013") as url:
         inactive_2013 = json.loads(url.read().decode())
         # print(json.dumps(data, indent=4, sort_keys=False))
-
-
-    # In[19]:
-
 
     with urllib.request.urlopen("https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false&year=2013") as url:
         active_2013 = json.loads(url.read().decode())
@@ -177,17 +114,10 @@ def scrapeData():
 
     # ## Concat
 
-    # In[20]:
-
-
     scraped_data = active_2021 + inactive_2021 + active_2020 + inactive_2020 + active_2019 + inactive_2019 + active_2018 + inactive_2018 + active_2017 + inactive_2017 + active_2016 + inactive_2016 + active_2015 + inactive_2015 + active_2014 + inactive_2014 + active_2013 + inactive_2013
 
     len(scraped_data)
     # scraped_data
-
-
-    # In[21]:
-
 
     #delete all fire data with erroneus values for either Latitude or Longitude (values outside the range of possibility)
     final_data = []
@@ -195,10 +125,6 @@ def scrapeData():
         if item["Latitude"] < 90 and item["Latitude"] > 0 and item["Longitude"] > -180 and item["Longitude"] < 180:
             final_data.append(item)
     # final_data
-
-
-    # In[22]:
-
 
     final_df = pd.DataFrame(final_data)
     # print(min(final_df["Longitude"]))
@@ -210,9 +136,6 @@ def scrapeData():
 
     # ## Pymongo
 
-    # In[23]:
-
-
     # Initialize PyMongo to work with MongoDBs
     conn = 'mongodb://localhost:27017'
     client = pymongo.MongoClient(conn)
@@ -221,32 +144,15 @@ def scrapeData():
     db = client.calfire
     collection = db.fires
 
-
-    # In[24]:
-
-
     for item in final_data:
         collection.insert_one(item)
-
-
-    # In[25]:
-
 
     #convert sq miles to total acreage in CA
     ca_area_miles = 163696
     ca_area_acreage = ca_area_miles * 640
-    # 
-
-
-    # In[26]:
-
 
     # # total_2021 = inactive_2021["AcresBurned"].sum()
     # final_data["Year"] = final_data["ExtinguishedDateOnly"].dt.year
-
-
-    # In[27]:
-
 
     total_2021_burned = 0
     for fire in inactive_2021:
@@ -369,10 +275,6 @@ def scrapeData():
     #       total_2017_burned,total_2016_burned,total_2015_burned, total_2014_burned,
     #      total_2013_burned)
 
-
-    # In[28]:
-
-
     burned_by_year = pd.DataFrame({
         "2021 Recorded Burn Totals": [total_2021_burned],
         "2020 Recorded Burn Totals": [total_2020_burned],
@@ -394,34 +296,12 @@ def scrapeData():
         "2013 % of CA Burned": (total_2013_burned / ca_area_acreage) * 100,
     }, index = [0])
 
-
-    # In[29]:
-
-
     burned_by_year_df = burned_by_year.transpose()
-
-
-    # In[30]:
-
-
     burned_by_year_df.reset_index()
-
-
-    # In[31]:
-
-
     burned_by_year_df = burned_by_year_df.rename(columns={0:"Acres Burned"})
     # burned_by_year_df
 
-
-    # In[32]:
-
-
     # ca_burnt_since_2013 = total_2021_burned + total_2021_burned total_2021_burned +total_2021_burned +total_2021_burned +total_2021_burned +total_2021_burned +total_2021_burned +total_2021_burned +
-
-
-    # In[33]:
-
 
     burned_by_year_df = pd.DataFrame(
         {"Year": ["2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014",
@@ -474,41 +354,19 @@ def scrapeData():
                         
                                 
         })
-    burned_by_year_df
+ #   burned_by_year_df
 
-
-    # In[34]:
-
-
-    # burned_by_year_df.to_csv("./burned_data.csv", index=False, header=True)
-
-
-    # In[35]:
-
-
+    burned_by_year_df.to_csv("./burned_data.csv", index=False, header=True)
 
     print(burned_by_year_df)
-
-
-    # In[36]:
-
 
     # Initialize PyMongo to work with MongoDBs
 
     # Define database and collection
     db = client.calfire
-    burned = db.burned
-
-
-    # In[37]:
-
-
-    # db_2.destinations.insert(burned_by_year_df)
-
-
-    # In[38]:
-
 
     converted_burned = pd.DataFrame.to_dict(burned_by_year_df, orient="records")
     converted_burned
     db.ca_burned.insert_many(converted_burned )
+
+    return final_data, converted_burned 

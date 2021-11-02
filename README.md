@@ -1,7 +1,7 @@
 # California Wildfire Dashboard
-Our California Wildfire Dashboard is a tool for individuals to view live Wildfire activity as well as historic California Wildfire data. This dashboard utilizes the E.T.L. process, of which data is collected from multiple sources, transformed, and put into a MongoDB database. Our goal for this dashboard is for individuals to view real-time wildfire data, get live updates, and stay informed. The statistics page on the dashboard provides analytical insights into hisotircal California wildfires.
+Our California Wildfire Dashboard is a tool for individuals to view live wildfire activity as well as historic California wildfire data. This dashboard utilizes the E.T.L. process, of which data is collected from multiple sources, transformed, and put into a MongoDB database. Our goal for this dashboard is for individuals to view real-time wildfire data, get live updates, and stay informed. The statistics page on the dashboard provides analytical insights into hisotircal California wildfires.
 
-## Repositroy Structure
+## Repository Structure
 
 * Flask app | [app.py](app.py)
 * Scrape script | [scrape.py](scrape.py)
@@ -39,7 +39,7 @@ If you have any questions, please feel free to reach out to any of the contribut
 ## Home
 ![home_page_1](img/dashboard_1_readme_preview.png)
 
-The homepage of the dashboard gives users the ability to use active fires as well as historic fires from 2021-2013.
+The homepage of the dashboard gives users the ability to view active fires as well as historic fires from 2013-2021.
 
 ## Twitter Updates & Evacuation Readiness (CalFire)
 

@@ -153,16 +153,9 @@ var layout4 = {
         xref: 'paper',
         x: 0.05,
     },
-    xaxis: {
-        title: {
-            text: 'Year',
-            font: {
-                family: 'Courier New, monospace',
-                size: 18,
-                color: '#7f7f7f'
-            }
-        },
-    }
+    xaxis_title="Year",
+    yaxis_title= "Total Recorded Burnt Acres",
+    zaxis_title="Total % of CA Burned"    
 };
 
 d3.json(`/ca_burned`).then(function (myData) {

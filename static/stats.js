@@ -153,9 +153,9 @@ var layout4 = {
         xref: 'paper',
         x: 0.05,
     },
-    xaxis_title="Year",
-    yaxis_title= "Total Recorded Burnt Acres",
-    zaxis_title="Total % of CA Burned"    
+    xaxis_title:"Year",
+    yaxis_title: "Total Recorded Burnt Acres",
+    zaxis_title:"Total % of CA Burned"    
 };
 
 d3.json(`/ca_burned`).then(function (myData) {

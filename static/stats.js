@@ -153,9 +153,28 @@ var layout4 = {
         xref: 'paper',
         x: 0.05,
     },
-    xaxis_title:"Year",
-    yaxis_title: "Total Recorded Burnt Acres",
-    zaxis_title:"Total % of CA Burned"    
+    scene: {
+    xaxis: {title: "Year",
+            backgroundcolor: "green",
+            gridcolor: "green",
+            showbackground: true,
+            zerolinecolor: "green"},
+    yaxis: {title: "Total Recorded Burnt Acres",
+            gridcolor: "purple",
+            backgroundcolor: "purple",
+            showbackground: true,
+            zerolinecolor: "purple"},
+    zaxis: {title: "Total % of CA Burned",
+    gridcolor: "red",
+    backgroundcolor: "red",
+    showbackground: true,
+    zerolinecolor: "red"}
+
+    },
+    autosize: false,
+    width: 800,
+    height: 500
+        
 };
 
 d3.json(`/ca_burned`).then(function (myData) {
@@ -166,7 +185,8 @@ d3.json(`/ca_burned`).then(function (myData) {
             y: myData.map(x => x["Total Recorded Burnt Acres"]),
             z: myData.map(z => z["Total % of CA Burned"]),
             mode: 'markers',
-            type: 'scatter3d'
+            type: 'scatter3d',
+            color: 'red'
         }
     ]
     console.log("let data = is now logged")
